@@ -14,6 +14,11 @@ namespace Correios.Controllers
             return View();
         }
 
+        public ActionResult buscaCep()
+        {
+            return View();
+        }
+
         public string dataHoraAtual()
         {
             return DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");

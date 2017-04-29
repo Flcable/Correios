@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BuscaCep</title>
+    <title>Index</title>
+    @Scripts.Render("~/bundles/jquery") <!-- Adicionar bibliotecas do Jquery-->
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function pesquisa() {
+            var id = $('#cep').val();
+            $.ajax({
+                type: 'GET',
+                url: '/Correios/cep?id=' + id,
+                dataType: 'html',
+                async: false,
+                success: function (dados) {
+                    $('#rEndereco').html(dados);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm())
+        {
+            @Html.TextBox("cep", ViewBag.Cep as String, new { @class = "form-control" })
+            <input id="btnPesquisa" type="button" value="Pesquisa" onclick="pesquisa();" />
+            <p id="rEndereco"></p>
+            <input type="submit" />
+       }
+    </div>
+</body>
+</html>
